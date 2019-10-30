@@ -6,3 +6,4 @@ share/
 .idea/
 *.json
 __pycache__
+venv/
