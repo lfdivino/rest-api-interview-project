@@ -14,7 +14,7 @@ class TestEventUsingRoutes(unittest.TestCase):
         result = self.api.post('/api/v1/event', json=JSON_NEW_EVENT)
         self.assertEqual(
             result.json,
-            8663424224,
+            994839351740,
             "Event can't be created!"
         )
 
@@ -30,13 +30,13 @@ class TestEventUsingRoutes(unittest.TestCase):
         result = self.api.post('/api/v1/event', json=JSON_NEW_EVENT)
         self.assertEqual(
             result.json,
-            'The event id 8663424224 already exists!',
+            'The event id 994839351740 already exists!',
             'The event with the same id was created!'
         )
 
     def delete_event_by_id(self):
         event_db = EventCommandsDB()
-        event_db.delete_event(JSON_NEW_EVENT['id'])
+        event_db.delete_event(JSON_NEW_EVENT['event']['id'])
 
     def test_create_event(self):
         self.create_new_event()
