@@ -1,17 +1,21 @@
 # -*- coding: utf-8 -*-
 
-from .db_event_commands import EventCommandsDB
+from app.db_event_commands import EventCommandsDB
 
 
-class Event(object):
+class EventCommands(object):
     def __init__(self, json):
         self.json_event = json
 
     def create_event(self):
         db_event = EventCommandsDB()
-        for event in db_event.select_event_by_id(self.json_event['id']):
+        event = db_event.select_event_by_id(self.json_event['event']['id'])
+        if event:
             return 'The event id {} already exists!'.format(event['id']), 400
 
-        result = db_event.create_event(self.json_event)
+        self.json_event["event"]["url"] = \
+            "/api/v1/match/{}".format(self.json_event["event"]["id"])
 
-        return self.json_event['id'], 200
+        result = db_event.create_event(self.json_event["event"])
+
+        return self.json_event['event']['id'], 200
