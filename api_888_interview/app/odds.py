@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask_restful import Resource
 
-from app.commands import *
-from app.odds_commands import Odd
+from api_888_interview.app.commands import *
+from api_888_interview.app.odds_commands import Odd
 
 
 class Odds(Resource):

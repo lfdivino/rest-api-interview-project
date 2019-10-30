@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from werkzeug.serving import run_simple
-from app import core
-
+from api_888_interview.app import core
 
 if __name__ == '__main__':
     app = core.core_app()

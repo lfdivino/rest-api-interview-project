@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from app.db_event_commands import EventCommandsDB
+from api_888_interview.app.db_event_commands import EventCommandsDB
 
 
 class EventCommands(object):

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask_restful import Resource
 
-from app.commands import *
-from app.match_commands import MatchCommands
+from api_888_interview.app.commands import *
+from api_888_interview.app.match_commands import MatchCommands
 
 
 class MatchByID(Resource):

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-from app.core import core_app
-from test.constants import *
-from app.db_event_commands import EventCommandsDB
+from api_888_interview.app.core import core_app
+from api_888_interview.app.db_event_commands import EventCommandsDB
+from api_888_interview.test.constants import *
 
 
 class TestEventUsingRoutes(unittest.TestCase):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from app.db_connection import DatabaseConnection
-from settings import *
+from api_888_interview.app.db_connection import DatabaseConnection
+from api_888_interview.settings import *
 
 
 class EventCommandsDB(object):

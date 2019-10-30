@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from app.db_match_commands import MatchCommandsDB
+from api_888_interview.app.db_match_commands import MatchCommandsDB
 
 
 class MatchCommands(object):
