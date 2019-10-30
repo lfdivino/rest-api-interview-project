@@ -8,6 +8,8 @@ class Odd(object):
         self.json_event = json
 
     def update_odds_json_event(self, event):
+        """Function responsible for updating the Odds in the ```Event```
+        object and returning this modified event"""
         for selection in self.json_event['event']['markets'][0]['selections']:
             for event_selection in event['markets'][0]['selections']:
                 if event_selection['id'] == selection['id']:
@@ -16,6 +18,9 @@ class Odd(object):
         return event
 
     def update_odds(self):
+        """Function responsible for validate if the ```Event```, them call
+        the function to update the values and update the collection in the
+        database"""
         db_odds = OddsCommandDB()
         event = db_odds.select_event_by_id(self.json_event['event']['id'])
         if not event:
