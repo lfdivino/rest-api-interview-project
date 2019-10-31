@@ -2,7 +2,7 @@
 
 from flask import Flask
 from flask_restful import Api
-from .routes import add_routes
+from api_888_interview.app.routes import add_routes
 
 
 def core_app():
