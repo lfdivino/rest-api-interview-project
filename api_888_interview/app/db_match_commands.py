@@ -10,11 +10,11 @@ class MatchCommandsDB(EventCommandsDB):
     in the ```Events``` collection"""
     def select_events(self):
         """Return all the Events in the collection"""
-        return self.db.db_collection.find({}, {'_id': 0})
+        return self.db_collection.find({}, {'_id': 0})
 
     def select_event_by_name(self, event_name=None):
         """Return the event that have the specified name or return False"""
-        return self.db.db_collection.find_one(
+        return self.db_collection.find_one(
             {'name': event_name}, DB_FIELDS_RETURN
         )
 
@@ -24,11 +24,11 @@ class MatchCommandsDB(EventCommandsDB):
         events = None
 
         if ordering:
-            events = self.db.db_collection.find(
+            events = self.db_collection.find(
                 {'sport.name': sport}, DB_FIELDS_RETURN
             ).sort([(ordering, pymongo.ASCENDING)])
         else:
-            events = self.db.db_collection.find(
+            events = self.db_collection.find(
                 {'sport.name': sport}, DB_FIELDS_RETURN
             )
 
