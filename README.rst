@@ -1,5 +1,11 @@
 888-spectate-interview-project
 ------------------------------
+
+.. image:: https://travis-ci.org/lfdivino/888-spectate-interview-project.svg?branch=master
+    :target: https://travis-ci.org/lfdivino/888-spectate-interview-project
+.. image:: https://coveralls.io/repos/github/lfdivino/888-spectate-interview-project/badge.svg?branch=master
+    :target: https://coveralls.io/github/lfdivino/888-spectate-interview-project?branch=master
+
 Motivation
 ===========
 Betbright is a sports betting platform. The main functional areas are:
