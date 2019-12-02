@@ -7,11 +7,11 @@ before_install:
 
 install:
   - python -m pip install -r requirements.txt
-  - pip install python-coveralls
+  - pip install coveralls
   - pip install .
 
 script:
-  - python -m unittest
+  - coverage run api_888_interview/test/test_event.py
 
 after_success:
   - coveralls
