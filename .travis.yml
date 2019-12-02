@@ -7,8 +7,11 @@ before_install:
 
 install:
   - python -m pip install -r requirements.txt
-  - pip install codecov coveralls
+  - pip install coveralls
   - pip install .
 
 script:
-  - coverage run --append ./api_888_interview/test/test_event.py
+  - coverage run api_888_interview/test/test_event.py
+
+after_success:
+  - coveralls
