@@ -3,6 +3,8 @@
 
 .. image:: https://travis-ci.org/lfdivino/888-spectate-interview-project.svg?branch=master
     :target: https://travis-ci.org/lfdivino/888-spectate-interview-project
+.. image:: https://circleci.com/gh/lfdivino/888-spectate-interview-project/tree/master.svg?style=svg
+    :target: https://circleci.com/gh/lfdivino/888-spectate-interview-project/tree/master
 .. image:: https://coveralls.io/repos/github/lfdivino/888-spectate-interview-project/badge.svg
     :target: https://coveralls.io/github/lfdivino/888-spectate-interview-project
 
