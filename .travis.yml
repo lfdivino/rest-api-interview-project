@@ -7,9 +7,8 @@ before_install:
 
 install:
   - python -m pip install -r requirements.txt
+  - pip install codecov coveralls
+  - pip install .
 
 script:
-  - python -m unittest
-
-after_success:
-  - coveralls
+  - coverage run --append ./api_888_interview/test/test_event.py
