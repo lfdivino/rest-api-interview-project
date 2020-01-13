@@ -25,7 +25,7 @@ class Odd(object):
         event = db_odds.select_event_by_id(self.json_event['event']['id'])
         if not event:
             return "The event id {} don't exists!".format(
-                self.json_event['event']['id']), 400
+                self.json_event['event']['id']), 200
 
         json_modified_odds = self.update_odds_json_event(event)
 
