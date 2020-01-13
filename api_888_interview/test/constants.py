@@ -199,3 +199,56 @@ JSON_EVENT_BY_SPORT = [
         "startTime": "2018-06-20 10:30:00"
     }
 ]
+
+CREAETE_NEW_EVENT = {
+    'event': {
+        'url': '/api/v1/match/994839351740',
+        'sport': {'name': 'Football', 'id': 221},
+        'id': 994839351740,
+        'markets': [
+            {
+                'selections': [
+                    {
+                        'odds': 1.01, 'name': 'Real Madrid', 'id': 8243901714083343527
+                    }, {
+                        'odds': 1.01, 'name': 'Barcelona', 'id': 5737666888266680774
+                    }
+                ],
+                'name': 'Winner',
+                'id': 385086549360973392
+            }
+        ],
+        'name': 'Real Madrid vs Barcelona',
+        'startTime': '2018-06-20 10:30:00'
+    },
+    'message_type': 'NewEvent',
+    'id': 8661032861909884224
+}
+
+UPDATE_ODDS = {
+    'startTime': '2018-06-20 10:30:00',
+    'id': 994839351740,
+    'markets': [
+        {
+            'id': 385086549360973392,
+            'selections': [
+                {
+                    'id': 8243901714083343527,
+                    'name': 'Real Madrid',
+                    'odds': 10.0
+                }, {
+                    'id': 5737666888266680774,
+                    'name': 'Barcelona',
+                    'odds': 5.55
+                }
+            ],
+            'name': 'Winner'
+        }
+    ],
+    'url': '/api/v1/match/994839351740',
+    'sport': {
+        'id': 221,
+        'name': 'Football'
+    },
+    'name': 'Real Madrid vs Barcelona'
+}

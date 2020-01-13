@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import unittest
+from unittest.mock import patch
+
 from api_888_interview.app.core import core_app
-from api_888_interview.app.db_event_commands import EventCommandsDB
 from api_888_interview.test.constants import *
 
 
@@ -10,7 +11,9 @@ class TestEventUsingRoutes(unittest.TestCase):
     def setUp(self):
         self.api = core_app().test_client()
 
-    def create_new_event(self):
+    @patch('api_888_interview.app.db_event_commands.EventCommandsDB.create_event')
+    def create_new_event(self, mock_create_event):
+        mock_create_event.return_value = CREAETE_NEW_EVENT
         result = self.api.post('/api/v1/event', json=JSON_NEW_EVENT)
         self.assertEqual(
             result.json,
@@ -26,7 +29,9 @@ class TestEventUsingRoutes(unittest.TestCase):
             "Error message not displayed!"
         )
 
-    def create_event_that_exist_in_the_collection(self):
+    @patch('api_888_interview.app.db_event_commands.EventCommandsDB.select_event_by_id')
+    def create_event_that_exist_in_the_collection(self, mock_select_event_by_id):
+        mock_select_event_by_id.return_value = JSON_NEW_EVENT['event']
         result = self.api.post('/api/v1/event', json=JSON_NEW_EVENT)
         self.assertEqual(
             result.json,
@@ -34,18 +39,14 @@ class TestEventUsingRoutes(unittest.TestCase):
             'The event with the same id was created!'
         )
 
-    def delete_event_by_id(self):
-        event_db = EventCommandsDB()
-        event_db.delete_event(JSON_NEW_EVENT['event']['id'])
-        event_db.delete_event(JSON_NEW_EVENT_02['event']['id'])
-
     def test_create_event(self):
         self.create_new_event()
         self.create_new_event_without_send_json()
         self.create_event_that_exist_in_the_collection()
-        self.delete_event_by_id()
 
-    def update_odds_non_existed_event(self):
+    @patch('api_888_interview.app.db_event_commands.EventCommandsDB.select_event_by_id')
+    def update_odds_non_existed_event(self, mock_select_event_by_id):
+        mock_select_event_by_id.return_value = None
         result = self.api.post('/api/v1/odds', json=JSON_UPDATE_ODDS)
         self.assertEqual(
             result.json,
@@ -60,9 +61,11 @@ class TestEventUsingRoutes(unittest.TestCase):
             "Invalid request json",
             "Update odds of a non specified event!"
         )
-
-    def update_odds_event(self):
-        result_create = self.api.post('/api/v1/event', json=JSON_NEW_EVENT)
+    @patch('api_888_interview.app.db_odds_commands.OddsCommandDB.update_odds')
+    @patch('api_888_interview.app.db_event_commands.EventCommandsDB.select_event_by_id')
+    def update_odds_event(self, mock_event_by_id, mock_update_odds):
+        mock_event_by_id.return_value = CREAETE_NEW_EVENT['event']
+        mock_update_odds.return_value = UPDATE_ODDS
         result_update = self.api.post('/api/v1/odds', json=JSON_UPDATE_ODDS)
         self.assertTrue(
             result_update.json,
@@ -73,9 +76,12 @@ class TestEventUsingRoutes(unittest.TestCase):
         self.update_odds_non_existed_event()
         self.update_odds_without_send_json()
         self.update_odds_event()
-        self.delete_event_by_id()
 
-    def search_match_by_id(self):
+    @patch('api_888_interview.app.db_event_commands.EventCommandsDB.select_event_by_id')
+    @patch('api_888_interview.app.db_event_commands.EventCommandsDB.create_event')
+    def search_match_by_id(self, mock_create_event, mock_select_event_by_id):
+        mock_create_event.return_value = CREAETE_NEW_EVENT
+        mock_select_event_by_id.return_value = JSON_EVENT_BY_ID
         result_create = self.api.post('/api/v1/event', json=JSON_NEW_EVENT)
         result_search = self.api.get('/api/v1/match/994839351740')
         self.assertEqual(
@@ -85,6 +91,8 @@ class TestEventUsingRoutes(unittest.TestCase):
             "from the event in the database"
         )
 
+        mock_select_event_by_id.return_value = None
+
         result_search = self.api.get('/api/v1/match/231231312')
         self.assertEqual(
             result_search.json,
@@ -92,7 +100,9 @@ class TestEventUsingRoutes(unittest.TestCase):
             "The result of the search by non existing id find an event"
         )
 
-    def search_match_by_name(self):
+    @patch('api_888_interview.app.db_match_commands.MatchCommandsDB.select_event_by_name')
+    def search_match_by_name(self, mock_event_by_name):
+        mock_event_by_name.return_value = JSON_EVENT_BY_NAME
         result_search = self.api.get(
             '/api/v1/match/?name=Real Madrid vs Barcelona')
         self.assertEqual(
@@ -102,7 +112,9 @@ class TestEventUsingRoutes(unittest.TestCase):
             "from the event in the database"
         )
 
-    def search_match_by_sport_and_ordering(self):
+    @patch('api_888_interview.app.db_match_commands.MatchCommandsDB.select_event_by_sport')
+    def search_match_by_sport_and_ordering(self, mock_event_by_sport):
+        mock_event_by_sport.return_value = JSON_EVENT_BY_SPORT
         result_search = self.api.get(
             '/api/v1/match/?sport=Football&ordering=startTime')
         self.assertEqual(
@@ -112,7 +124,9 @@ class TestEventUsingRoutes(unittest.TestCase):
             "from the event in the database"
         )
 
-    def search_match_by_sport(self):
+    @patch('api_888_interview.app.db_match_commands.MatchCommandsDB.select_event_by_sport')
+    def search_match_by_sport(self, mock_event_by_sport):
+        mock_event_by_sport.return_value = JSON_EVENT_BY_SPORT
         result_search = self.api.get(
             '/api/v1/match/?sport=Football')
         self.assertEqual(
@@ -122,8 +136,9 @@ class TestEventUsingRoutes(unittest.TestCase):
             "from the event in the database"
         )
 
-    def search_matchs(self):
-        result_create = self.api.post('/api/v1/event', json=JSON_NEW_EVENT_02)
+    @patch('api_888_interview.app.db_match_commands.MatchCommandsDB.select_events')
+    def search_matchs(self, mock_select_matches):
+        mock_select_matches.return_value = [JSON_NEW_EVENT, JSON_NEW_EVENT_02]
         result_search = self.api.get('/api/v1/match/')
         self.assertEqual(
             len(result_search.json),
@@ -138,7 +153,6 @@ class TestEventUsingRoutes(unittest.TestCase):
         self.search_match_by_sport_and_ordering()
         self.search_match_by_sport()
         self.search_matchs()
-        self.delete_event_by_id()
 
 
 if __name__ == '__main__':

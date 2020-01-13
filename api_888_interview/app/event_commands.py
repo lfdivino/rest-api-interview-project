@@ -16,7 +16,7 @@ class EventCommands(object):
         db_event = EventCommandsDB()
         event = db_event.select_event_by_id(self.json_event['event']['id'])
         if event:
-            return 'The event id {} already exists!'.format(event['id']), 400
+            return 'The event id {} already exists!'.format(self.json_event['event']['id']), 200
 
         self.json_event["event"]["url"] = \
             "/api/v1/match/{}".format(self.json_event["event"]["id"])
