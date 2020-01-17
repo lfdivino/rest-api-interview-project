@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from api_888_interview.app.db_match_commands import MatchCommandsDB
+from .db_match_controller import MatchCommandsDB
 
 
 class MatchCommands(object):
@@ -48,9 +48,9 @@ class MatchCommands(object):
 
         return self.verify_event_db_return(events)
 
-    def verify_event_db_return(self, event):
+    @staticmethod
+    def verify_event_db_return(event):
         if not event:
             return 'Match not found!', 404
 
         return event, 200
-

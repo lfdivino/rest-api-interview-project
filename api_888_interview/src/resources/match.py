@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from flask_restful import Resource
 
-from api_888_interview.app.commands import *
-from api_888_interview.app.match_commands import MatchCommands
+from api_888_interview.src.utils.parser_get_arguments import \
+    parser_get_arguments
+from api_888_interview.src.controllers.match_controller import MatchCommands
 
 
 class MatchByID(Resource):
@@ -25,7 +26,9 @@ class MatchByArgs(Resource):
             return MatchCommands(name=args['name']).get_event_by_name()
 
         if args.get('sport'):
-            return MatchCommands(sport=args['sport'],
-                          ordering=args['ordering']).get_event_by_sport()
+            return MatchCommands(
+                sport=args['sport'],
+                ordering=args['ordering']
+            ).get_event_by_sport()
 
         return MatchCommands().get_events()

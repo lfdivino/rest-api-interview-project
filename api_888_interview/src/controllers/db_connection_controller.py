@@ -28,12 +28,14 @@ class DatabaseConnection(object):
         return client
 
     def connect_db(self, client_cluster):
-        """Function responsible for selecting the database inside the Cluster"""
+        """Function responsible for selecting the
+        database inside the Cluster"""
         db = client_cluster[self.mongo_database]
 
         return db
 
-    def connect_collection(self, db, nome_collection):
+    @staticmethod
+    def connect_collection(db, nome_collection):
         """Function responsible for selecting the collection inside the DB"""
         collection = db[nome_collection]
 
