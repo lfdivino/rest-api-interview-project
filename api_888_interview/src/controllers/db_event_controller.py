@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from api_888_interview.app.db_connection import DatabaseConnection
+from .db_connection_controller import DatabaseConnection
 from api_888_interview.settings import *
 
 

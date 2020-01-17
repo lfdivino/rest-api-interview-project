@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pymongo
 
-from api_888_interview.app.db_event_commands import EventCommandsDB
+from .db_event_controller import EventCommandsDB
 from api_888_interview.settings import *
 
 

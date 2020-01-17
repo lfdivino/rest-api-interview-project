@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask_restful import Resource
 
-from api_888_interview.app.commands import *
-from api_888_interview.app.event_commands import EventCommands
+from api_888_interview.src.utils.get_request_json import get_request_json
+from api_888_interview.src.controllers.event_controller import EventCommands
 
 
 class Event(Resource):

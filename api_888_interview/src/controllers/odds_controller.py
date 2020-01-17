@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from api_888_interview.app.db_odds_commands import OddsCommandDB
+from .db_odds_controller import OddsCommandDB
 
 
 class Odd(object):
@@ -29,6 +29,6 @@ class Odd(object):
 
         json_modified_odds = self.update_odds_json_event(event)
 
-        result = db_odds.update_odds(event['id'], json_modified_odds)
+        db_odds.update_odds(event['id'], json_modified_odds)
 
         return True, 200
