@@ -4,7 +4,7 @@ from pymongo import MongoClient
 import ssl
 
 
-class DatabaseConnection(object):
+class DBConnection:
     """Class responsible for creating the connections to the
     Mongodb Cloud Cluster, the Database itself and to the collection
 

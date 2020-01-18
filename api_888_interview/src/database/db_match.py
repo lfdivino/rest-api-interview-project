@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import pymongo
 
-from .db_event_controller import EventCommandsDB
+from .db_event import DBEvent
 from api_888_interview.settings import *
 
 
-class MatchCommandsDB(EventCommandsDB):
+class DBMatch(DBEvent):
     """Class responsible to control all the search of matches
     in the ```Events``` collection"""
     def select_events(self):
