@@ -2,7 +2,7 @@
 from flask_restful import Resource
 
 from api_888_interview.src.utils.get_request_json import get_request_json
-from api_888_interview.src.controllers.event_controller import EventCommands
+from api_888_interview.src.controllers.event_controller import EventController
 
 
 class Event(Resource):
@@ -15,4 +15,4 @@ class Event(Resource):
         if not json_args:
             return 'Invalid request json', 400
 
-        return EventCommands(json_args).create_event()
+        return EventController(json_args).create_event()

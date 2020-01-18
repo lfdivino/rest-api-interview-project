@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from .db_match_controller import MatchCommandsDB
+from api_888_interview.src.database.db_match import DBMatch
 
 
-class MatchCommands(object):
+class MatchController:
     """Class responsible to treat the data from the matches search parameters
     and call the match database functions
 
@@ -18,32 +18,29 @@ class MatchCommands(object):
         self.name = name
         self.sport = sport.capitalize() if sport else sport
         self.ordering = ordering
+        self.db_match = DBMatch()
 
     def get_events(self):
         """Return all the events in the collection"""
-        db_match = MatchCommandsDB()
-        event = [event for event in db_match.select_events()]
+        event = [event for event in self.db_match.select_events()]
 
         return self.verify_event_db_return(event)
 
     def get_event_by_id(self):
         """Return the match by its 'id'"""
-        db_match = MatchCommandsDB()
-        event = db_match.select_event_by_id(int(self.event_id))
+        event = self.db_match.select_event_by_id(int(self.event_id))
 
         return self.verify_event_db_return(event)
 
     def get_event_by_name(self):
         """Return the match by its 'name'"""
-        db_match = MatchCommandsDB()
-        event = db_match.select_event_by_name(self.name)
+        event = self.db_match.select_event_by_name(self.name)
 
         return self.verify_event_db_return(event)
 
     def get_event_by_sport(self):
         """Return all matches by its 'sport' name"""
-        db_match = MatchCommandsDB()
-        events = [event for event in db_match.select_event_by_sport(
+        events = [event for event in self.db_match.select_event_by_sport(
             self.sport, self.ordering)]
 
         return self.verify_event_db_return(events)

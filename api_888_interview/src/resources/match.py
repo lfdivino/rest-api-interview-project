@@ -3,14 +3,14 @@ from flask_restful import Resource
 
 from api_888_interview.src.utils.parser_get_arguments import \
     parser_get_arguments
-from api_888_interview.src.controllers.match_controller import MatchCommands
+from api_888_interview.src.controllers.match_controller import MatchController
 
 
 class MatchByID(Resource):
     """Class responsible for managing the routes of search matches by id"""
     def get(self, event_id=None):
 
-        return MatchCommands(event_id=event_id).get_event_by_id()
+        return MatchController(event_id=event_id).get_event_by_id()
 
 
 class MatchByArgs(Resource):
@@ -23,12 +23,12 @@ class MatchByArgs(Resource):
         args = parser.parse_args()
 
         if args.get('name'):
-            return MatchCommands(name=args['name']).get_event_by_name()
+            return MatchController(name=args['name']).get_event_by_name()
 
         if args.get('sport'):
-            return MatchCommands(
+            return MatchController(
                 sport=args['sport'],
                 ordering=args['ordering']
             ).get_event_by_sport()
 
-        return MatchCommands().get_events()
+        return MatchController().get_events()

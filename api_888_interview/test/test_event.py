@@ -11,7 +11,7 @@ class TestEventUsingRoutes(unittest.TestCase):
     def setUp(self):
         self.api = init().test_client()
 
-    @patch('api_888_interview.src.controllers.db_event_controller.EventCommandsDB.create_event')
+    @patch('api_888_interview.src.database.db_event.DBEvent.create_event')
     def create_new_event(self, mock_create_event):
         mock_create_event.return_value = CREAETE_NEW_EVENT
         result = self.api.post('/api/v1/event', json=JSON_NEW_EVENT)
@@ -29,7 +29,7 @@ class TestEventUsingRoutes(unittest.TestCase):
             "Error message not displayed!"
         )
 
-    @patch('api_888_interview.src.controllers.db_event_controller.EventCommandsDB.select_event_by_id')
+    @patch('api_888_interview.src.database.db_event.DBEvent.select_event_by_id')
     def create_event_that_exist_in_the_collection(self, mock_select_event_by_id):
         mock_select_event_by_id.return_value = JSON_NEW_EVENT['event']
         result = self.api.post('/api/v1/event', json=JSON_NEW_EVENT)
@@ -44,7 +44,7 @@ class TestEventUsingRoutes(unittest.TestCase):
         self.create_new_event_without_send_json()
         self.create_event_that_exist_in_the_collection()
 
-    @patch('api_888_interview.src.controllers.db_event_controller.EventCommandsDB.select_event_by_id')
+    @patch('api_888_interview.src.database.db_event.DBEvent.select_event_by_id')
     def update_odds_non_existed_event(self, mock_select_event_by_id):
         mock_select_event_by_id.return_value = None
         result = self.api.post('/api/v1/odds', json=JSON_UPDATE_ODDS)
@@ -61,8 +61,9 @@ class TestEventUsingRoutes(unittest.TestCase):
             "Invalid request json",
             "Update odds of a non specified event!"
         )
-    @patch('api_888_interview.src.controllers.db_odds_controller.OddsCommandDB.update_odds')
-    @patch('api_888_interview.src.controllers.db_event_controller.EventCommandsDB.select_event_by_id')
+
+    @patch('api_888_interview.src.database.db_odds.DBOdds.update_odds')
+    @patch('api_888_interview.src.database.db_event.DBEvent.select_event_by_id')
     def update_odds_event(self, mock_event_by_id, mock_update_odds):
         mock_event_by_id.return_value = CREAETE_NEW_EVENT['event']
         mock_update_odds.return_value = UPDATE_ODDS
@@ -77,8 +78,8 @@ class TestEventUsingRoutes(unittest.TestCase):
         self.update_odds_without_send_json()
         self.update_odds_event()
 
-    @patch('api_888_interview.src.controllers.db_event_controller.EventCommandsDB.select_event_by_id')
-    @patch('api_888_interview.src.controllers.db_event_controller.EventCommandsDB.create_event')
+    @patch('api_888_interview.src.database.db_event.DBEvent.select_event_by_id')
+    @patch('api_888_interview.src.database.db_event.DBEvent.create_event')
     def search_match_by_id(self, mock_create_event, mock_select_event_by_id):
         mock_create_event.return_value = CREAETE_NEW_EVENT
         mock_select_event_by_id.return_value = JSON_EVENT_BY_ID
@@ -100,7 +101,7 @@ class TestEventUsingRoutes(unittest.TestCase):
             "The result of the search by non existing id find an event"
         )
 
-    @patch('api_888_interview.src.controllers.db_match_controller.MatchCommandsDB.select_event_by_name')
+    @patch('api_888_interview.src.database.db_match.DBMatch.select_event_by_name')
     def search_match_by_name(self, mock_event_by_name):
         mock_event_by_name.return_value = JSON_EVENT_BY_NAME
         result_search = self.api.get(
@@ -112,7 +113,7 @@ class TestEventUsingRoutes(unittest.TestCase):
             "from the event in the database"
         )
 
-    @patch('api_888_interview.src.controllers.db_match_controller.MatchCommandsDB.select_event_by_sport')
+    @patch('api_888_interview.src.database.db_match.DBMatch.select_event_by_sport')
     def search_match_by_sport_and_ordering(self, mock_event_by_sport):
         mock_event_by_sport.return_value = JSON_EVENT_BY_SPORT
         result_search = self.api.get(
@@ -124,7 +125,7 @@ class TestEventUsingRoutes(unittest.TestCase):
             "from the event in the database"
         )
 
-    @patch('api_888_interview.src.controllers.db_match_controller.MatchCommandsDB.select_event_by_sport')
+    @patch('api_888_interview.src.database.db_match.DBMatch.select_event_by_sport')
     def search_match_by_sport(self, mock_event_by_sport):
         mock_event_by_sport.return_value = JSON_EVENT_BY_SPORT
         result_search = self.api.get(
@@ -136,7 +137,7 @@ class TestEventUsingRoutes(unittest.TestCase):
             "from the event in the database"
         )
 
-    @patch('api_888_interview.src.controllers.db_match_controller.MatchCommandsDB.select_events')
+    @patch('api_888_interview.src.database.db_match.DBMatch.select_events')
     def search_matchs(self, mock_select_matches):
         mock_select_matches.return_value = [JSON_NEW_EVENT, JSON_NEW_EVENT_02]
         result_search = self.api.get('/api/v1/match/')

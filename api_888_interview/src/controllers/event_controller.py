@@ -1,19 +1,20 @@
 # -*- coding: utf-8 -*-
 
-from .db_event_controller import EventCommandsDB
+from api_888_interview.src.database.db_event import DBEvent
 
 
-class EventCommands(object):
+class EventController:
     """Class responsible to treat the data from the NewEvent route and call
     the ```Events``` database functions
     :param: A JSON, JSON with the data from the NewEvent"""
     def __init__(self, json):
         self.json_event = json
+        self.db_event = DBEvent()
 
     def create_event(self):
         """Function responsible to verify if the ```Èvent``` already exist,
         if False, call the Event database function to create a new on"""
-        db_event = EventCommandsDB()
+        db_event = DBEvent()
         event = db_event.select_event_by_id(self.json_event['event']['id'])
         if event:
             return 'The event id {} already exists!'.format(

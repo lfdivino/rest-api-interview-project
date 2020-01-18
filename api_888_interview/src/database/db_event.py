@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from .db_connection_controller import DatabaseConnection
+from .db_connection import DBConnection
 from api_888_interview.settings import *
 
 
-class EventCommandsDB(DatabaseConnection):
+class DBEvent(DBConnection):
     """Class responsible to generate all the database functionalities
      involving the events in the Database
 
@@ -12,7 +12,7 @@ class EventCommandsDB(DatabaseConnection):
     the collection ```Events```
      """
     def __init__(self):
-        super(EventCommandsDB, self).__init__(
+        super(DBEvent, self).__init__(
             MONGO_URI, MONGO_DATABASE, 'Events')
 
     def create_event(self, event):
