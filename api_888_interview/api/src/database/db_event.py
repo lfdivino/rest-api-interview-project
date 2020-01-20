@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from .db_connection import DBConnection
-from api.settings import *
+from ...settings import *
 
 
 class DBEvent(DBConnection):

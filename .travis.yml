@@ -10,7 +10,4 @@ install:
   - pip install coveralls
 
 script:
-  - coverage run api_888_interview/api/test/test_event.py
-
-after_success:
-  - coveralls
+  - python -m api_888_interview.api.test.test_event

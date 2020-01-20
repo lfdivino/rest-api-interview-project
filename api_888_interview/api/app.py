@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import Flask
 from flask_restful import Api
-from api.src.routes.routes import add_routes
+from .src.routes.routes import add_routes
 
 
 def init():

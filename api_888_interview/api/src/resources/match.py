@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask_restful import Resource
 
-from api.src.utils.parser_get_arguments import parser_get_arguments
-from api.src.controllers.match_controller import MatchController
+from ..utils.parser_get_arguments import parser_get_arguments
+from ..controllers.match_controller import MatchController
 
 
 class MatchByID(Resource):

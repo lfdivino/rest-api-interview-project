@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from api.src.database.db_match import DBMatch
+from ..database.db_match import DBMatch
 
 
 class MatchController:

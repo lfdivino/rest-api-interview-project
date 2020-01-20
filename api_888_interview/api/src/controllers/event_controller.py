@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from api.src.database.db_event import DBEvent
+from ..database.db_event import DBEvent
 
 
 class EventController:

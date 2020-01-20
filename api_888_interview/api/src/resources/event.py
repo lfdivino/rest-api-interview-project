@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask_restful import Resource
 
-from api.src.utils.get_request_json import get_request_json
-from api.src.controllers.event_controller import EventController
+from ..utils.get_request_json import get_request_json
+from ..controllers.event_controller import EventController
 
 
 class Event(Resource):

@@ -2,7 +2,7 @@
 import pymongo
 
 from .db_event import DBEvent
-from api.settings import *
+from ...settings import *
 
 
 class DBMatch(DBEvent):
