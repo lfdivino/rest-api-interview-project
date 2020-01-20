@@ -1,0 +1,19 @@
+version: "2.0"
+
+services:
+
+  flask:
+    build: ./api_888_interview
+    container_name: api_888_interview
+    restart: always
+    environment:
+      - APP_NAME=MyApi
+    expose:
+      - 8080
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"

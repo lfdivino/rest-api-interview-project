@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from api_888_interview.src.resources.event import Event
-from api_888_interview.src.resources.odds import Odds
-from api_888_interview.src.resources.match import MatchByID, MatchByArgs
+from api.src.resources.event import Event
+from api.src.resources.odds import Odds
+from api.src.resources.match import MatchByID, MatchByArgs
 
 
 def add_routes(api):
