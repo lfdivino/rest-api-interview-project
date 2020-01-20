@@ -6,12 +6,8 @@ before_install:
   - python -m pip install -U pip
 
 install:
-  - python -m pip install -r requirements.txt
+  - python -m pip install -r api_888_interview/requirements.txt
   - pip install coveralls
-  - pip install .
 
 script:
-  - coverage run api_888_interview/test/test_event.py
-
-after_success:
-  - coveralls
+  - python -m api_888_interview.api.test.test_event

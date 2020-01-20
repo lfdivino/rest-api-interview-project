@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from api_888_interview.src.database.db_odds import DBOdds
+from ..database.db_odds import DBOdds
 
 
 class OddController:
