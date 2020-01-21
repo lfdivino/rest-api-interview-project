@@ -10,4 +10,7 @@ install:
   - pip install coveralls
 
 script:
-  - python -m api_888_interview.api.test.test_event
+  - coverage run -m unittest api_888_interview.api.test.test_event
+
+after_success:
+  - coveralls
