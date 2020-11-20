@@ -7,3 +7,6 @@ share/
 *.json
 __pycache__
 venv/
+.env
+.pytest_cache
+test/htmlcov
