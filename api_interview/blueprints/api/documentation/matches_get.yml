@@ -1,0 +1,36 @@
+Get matches by name or sport type
+---
+tags:
+  - Match
+parameters:
+  - name: name
+    type: string
+    in: query
+    minimum: 1
+  - name: sport
+    type: string
+    in: query
+    minimum: 1
+responses:
+  200:
+    description: OK
+    schema:
+      $ref: '#/definitions/Matches'
+definitions:
+  Matches:
+    type: array
+    items:
+      type: object
+      properties:
+        url:
+          type: string
+          default: "/api/v1/match/994839351740"
+        id:
+          type: integer
+          default: 994839351740
+        name:
+          type: string
+          default: "Real Madrid vs Barcelona"
+        startTime:
+          type: string
+          default: "2018-06-20 10:30:00"

@@ -1,0 +1,33 @@
+Get match by ID
+---
+tags:
+  - Match
+parameters:
+  - name: id
+    type: integer
+    in: path
+    required: True
+    minimum: 1
+responses:
+  200:
+    description: OK
+    schema:
+      $ref: '#/definitions/Match'
+  404:
+    description: NOT FOUND
+definitions:
+  Match:
+    type: object
+    properties:
+      url:
+        type: string
+        default: "/api/v1/match/994839351740"
+      id:
+        type: integer
+        default: 994839351740
+      name:
+        type: string
+        default: "Real Madrid vs Barcelona"
+      startTime:
+        type: string
+        default: "2018-06-20 10:30:00"
