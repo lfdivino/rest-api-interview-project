@@ -1,13 +1,5 @@
 888-spectate-interview-project
 ------------------------------
-
-.. image:: https://travis-ci.org/lfdivino/888-spectate-interview-project.svg?branch=master
-    :target: https://travis-ci.org/lfdivino/888-spectate-interview-project
-.. image:: https://circleci.com/gh/lfdivino/888-spectate-interview-project/tree/master.svg?style=svg
-    :target: https://circleci.com/gh/lfdivino/888-spectate-interview-project/tree/master
-.. image:: https://coveralls.io/repos/github/lfdivino/888-spectate-interview-project/badge.svg
-    :target: https://coveralls.io/github/lfdivino/888-spectate-interview-project
-
 Motivation
 ===========
 Betbright is a sports betting platform. The main functional areas are:
@@ -23,8 +15,10 @@ For this API were chosen as stack:
 
 - Flask
 - Flask Restful
-- MongoDB (Atlas_)
+- MongoDB
 - Pymongo
+- Marshmallow
+- Flasgger
 - Docker
 
 Install
@@ -32,37 +26,18 @@ Install
 
 First of all clone this project and access it's root folder
 
-1 - Install with virtualenv
-=================================
+1 - API Docker Installation
+===========================
 
-To install using a virtualenv environment just use the command ::
+To install and run the api just execute the following command ::
 
-    ./fast_install.sh
+    docker-compose up --build
 
-After the installation active the virtualenv ::
+And access ::
 
-    source venv/bin/activate
+    http://localhost
 
-Then just start the API ::
 
-    api_888_interview/api.py
-
-To test the api just use the following command ::
-
-    python3 api_888_interview/test/test_event.py
-
-2 - API Docker Installation
-=========================
-
-To install the API using docker just follow the command (Assuming you have Docker installed previously) ::
-
-    sudo docker build --no-cache -t api_888 .
-    sudo docker run -it -p 5000:5000 api_888
-
-So inside the container just use the following commands to execute the API or execute its tests ::
-
-    python api/api_888_interview/api.py
-    python api/api_888_interview/test/test_event.py
 
 API Routes
 ============
@@ -70,20 +45,26 @@ API Routes
 The API Routes:
 
 - POST '/api/v1/event'
+- GET  '/api/v1/events'
 - POST '/api/v1/odds'
 - GET  '/api/v1/match/<event_id>'
 - GET  '/api/v1/match/' (The Querystring parameters can be use: 'name', 'sport', 'ordering')
+
+Documentation
+=============
+
+You could verify and test all the routes by accessing the API Documentation ::
+
+    http://localhost/apidocs
+
+Example of a Event POST:
+
+.. image:: docs/api_swagger.png
 
 Maintainers
 -----------
 
 - Luiz_ Felipe_ Divino_ (owner)
-
-.. Deputados Crawler links
-.. _Website: http://www.camara.leg.br/internet/deputado/Dep_Lista_foto.asp?Legislatura=55&Partido=QQ&SX=QQ&Todos=None&UF=QQ&condic=QQ&forma=lista&nome=&ordem=nome&origem=None
-
-.. Ferramentas Utilizadas links
-.. _Atlas: https://cloud.mongodb.com/
 
 .. Maintainers links
 .. _Luiz: https://github.com/lfdivino
