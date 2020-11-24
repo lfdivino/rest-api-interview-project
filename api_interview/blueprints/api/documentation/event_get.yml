@@ -1,0 +1,63 @@
+View all events
+---
+tags:
+  - Event
+responses:
+  200:
+    description: OK
+    schema:
+      $ref: '#/definitions/Events'
+definitions:
+  Events:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+          default: 123131
+        name:
+          type: string
+          default: "Team A vs Team B"
+        startTime:
+          type: string
+          default: "20/06/2018 10:30"
+        url:
+          type: string
+          default: "/api/v1/match/8661032861909884224"
+        sport:
+          type: object
+          properties:
+            id:
+              type: integer
+              default: 221
+              required: true
+            name:
+              type: string
+              default: "Football"
+              required: true
+        markets:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                default: 385086549360973392
+              name:
+                type: string
+                default: "Winner"
+              selections:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      defaul: 8243901714083343527
+                    name:
+                      type: string
+                      default: "Real Madrid"
+                    odds:
+                      type: number
+                      defaul: 1.01

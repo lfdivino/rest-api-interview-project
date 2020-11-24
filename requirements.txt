@@ -1,0 +1,10 @@
+Flask
+Flask-RESTful
+Flask-PyMongo
+pytest
+pytest-mock
+pytest-flask
+pytest-cov
+flasgger
+flask-marshmallow
+uwsgi

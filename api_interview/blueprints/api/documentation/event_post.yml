@@ -1,0 +1,76 @@
+Create a new Event
+---
+tags:
+  - Event
+parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      id: Event
+      required:
+        - id
+        - message_type
+        - event
+      properties:
+        id:
+          type: integer
+          description: Message id.
+          default: 123
+          required: true
+        message_type:
+          type: string
+          description: The message's type
+          default: "NewEvent"
+          required: true
+        event:
+          type: object
+          description: Event details
+          properties:
+            sport:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  default: 221
+                  required: true
+                name:
+                  type: string
+                  default: "Football"
+                  required: true
+            markets:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    default: 385086549360973392
+                    required: true
+                  name:
+                    type: string
+                    default: "Winner"
+                    required: true
+                  selections:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          defaul: 8243901714083343527
+                          required: true
+                        name:
+                          type: string
+                          default: "Real Madrid"
+                          required: true
+                        odds:
+                          type: number
+                          defaul: 1.01
+                          required: true
+          required: true
+responses:
+  201:
+    description: The event has been created
+  400:
+    description: The event id already exists!

@@ -1,16 +1,28 @@
-version: "2.0"
+version: "3"
 
 services:
 
   api:
     build:
-      context: ./api_888_interview
+      context: .
       dockerfile: Dockerfile
-    image: lfdivino/myapi
-    container_name: api_888_interview
-    restart: always
     expose:
       - 8080
+    container_name: api_interview
+    env_file:
+      - .env
+    restart: always
+    networks:
+      - production-network
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    ports:
+      - 27017:27017
     networks:
       - production-network
 
@@ -18,8 +30,6 @@ services:
     build:
       context: ./nginx
       dockerfile: Dockerfile
-
-    image: lfdivino/nginx
     container_name: nginx
     restart: always
     ports:
